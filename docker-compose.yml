@@ -12,11 +12,9 @@ services:
     volumes:
       - ${PROJECT_ROOT}/:/app/
     container_name: php_shopify
-  apache:
+  httpd:
     build:
       context: './apache/'
-      args:
-        APACHE_VERSION: ${APACHE_VERSION}
     depends_on:
       - php
     networks:
