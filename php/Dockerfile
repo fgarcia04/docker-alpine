@@ -6,6 +6,8 @@ RUN apk update; \
 
 RUN apk add --no-cache apache2
 
+COPY localhost.conf /etc/apache2/conf.d/
+
 RUN apk add --no-cache \
     php \
     php7-ctype \
