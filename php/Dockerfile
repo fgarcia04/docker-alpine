@@ -1,5 +1,5 @@
 ARG PHP_VERSION=""
-FROM php:${PHP_VERSION:+${PHP_VERSION}-}-apache
+FROM php:${PHP_VERSION:+${PHP_VERSION}-}fpm-alpine
 
 RUN apk update; \
     apk upgrade;
@@ -25,5 +25,3 @@ RUN docker-php-ext-install \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app/
-
-CMD ["start-apache"]
