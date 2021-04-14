@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-  web:
+  php:
     build:
       context: './php/'
       args:
@@ -10,7 +10,25 @@ services:
     ports:
       - "6001:6001"
     volumes:
-      - ${PROJECT_ROOT}/:/var/www/html/
+      - ${PROJECT_ROOT}/:/app/
     container_name: php_shopify
+  apache:
+    build:
+      context: './apache/'
+      args:
+        APACHE_VERSION: ${APACHE_VERSION}
+    depends_on:
+      - php
+    networks:
+      - frontend
+      - backend
+    ports:
+      - "80:80"
+    volumes:
+      - ${PROJECT_ROOT}/:/var/www/html/
+    container_name: apache_shopify
 networks:
+  frontend:
   backend:
+volumes:
+  data:
