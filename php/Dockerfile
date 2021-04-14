@@ -6,7 +6,7 @@ RUN apk update; \
 
 RUN apk add --no-cache apache2
 
-COPY localhost.conf /etc/apache2/sites-available/
+COPY shopify.conf /etc/apache2/conf.d/
 
 
 RUN apk add --no-cache \
