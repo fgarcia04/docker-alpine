@@ -3,15 +3,13 @@ services:
   php:
     build:
       context: './php/'
-      args:
-        PHP_VERSION: ${PHP_VERSION}
     networks:
       - backend
       - frontend
     ports:
       - "80:80"
     volumes:
-      - ${PROJECT_ROOT}/:/var/www/html/
+      - ./app/:/var/www/html/
     container_name: php_shopify
 networks:
   frontend:

@@ -1,5 +1,5 @@
 ARG PHP_VERSION=""
-FROM php:${PHP_VERSION:+${PHP_VERSION}-}alpine
+FROM php:7.2-alpine
 
 RUN apk update; \
     apk upgrade;
