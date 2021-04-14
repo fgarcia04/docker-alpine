@@ -1,13 +1,8 @@
 ARG PHP_VERSION=""
-FROM php:7.2-alpine
+FROM php:${PHP_VERSION:+${PHP_VERSION}-}fpm-alpine
 
 RUN apk update; \
     apk upgrade;
-
-RUN apk add --no-cache apache2
-
-COPY shopify.conf /etc/apache2/conf.d/
-
 
 RUN apk add --no-cache \
     php \
@@ -29,17 +24,4 @@ RUN docker-php-ext-install \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www/html/
-
-EXPOSE 80
-
-# Run httpd in foreground so that the container does not quit
-# soon after start
-# To run this container in the back ground use the -d option
-#
-#     $ sudo docker run -d broadtech/alpine-apache2
-#
-CMD ["-D","FOREGROUND"]
-
-# Srart httpd when container runs
-ENTRYPOINT ["/usr/sbin/httpd"]
+WORKDIR /app/
