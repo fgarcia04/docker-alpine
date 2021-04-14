@@ -7,10 +7,11 @@ services:
         PHP_VERSION: ${PHP_VERSION}
     networks:
       - backend
+      - frontend
     ports:
       - "6001:6001"
     volumes:
-      - ${PROJECT_ROOT}/:/app/
+      - ${PROJECT_ROOT}/:/var/www/html/
     container_name: php_shopify
 networks:
   frontend:
