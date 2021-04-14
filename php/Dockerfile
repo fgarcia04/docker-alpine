@@ -6,7 +6,8 @@ RUN apk update; \
 
 RUN apk add --no-cache apache2
 
-COPY localhost.conf /etc/apache2/conf.d/
+COPY localhost.conf /etc/apache2/sites-available/
+
 
 RUN apk add --no-cache \
     php \
