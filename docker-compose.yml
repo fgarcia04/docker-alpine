@@ -30,6 +30,7 @@ services:
     restart: always
     ports:
       - "3306:3306"
+    command: --sql_mode=""
     volumes:
       - ./comunidadlegal_stg.sql:/docker-entrypoint-initdb.d/comunidadlegal_stg.sql
       - ./data:/var/lib/mysql
