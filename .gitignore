@@ -1,4 +1,4 @@
-.idea/
 app/
 data/
 comunidadlegal_stg.sql
+.env

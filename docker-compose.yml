@@ -1,4 +1,4 @@
-version: "3.2"
+version: "3.8"
 services:
   php:
     build: 
@@ -8,7 +8,7 @@ services:
     networks:
       - backend
     volumes:
-      - ${PROJECT_ROOT}/:/var/www/html/
+      - ${PROJECT_ROOT}:/var/www/html
     container_name: php_app
   apache:
     build:
@@ -23,17 +23,18 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ${PROJECT_ROOT}/:/var/www/html/
+      - /home/fgarcia/repositories/docker-alpine/app:/var/www/html
     container_name: apache_app
+    environment:
+      - PROJECT_PATH_VH=${PROJECT_PATH}
   mysql:
     image: mysql:${MYSQL_VERSION:-latest}
     restart: always
     ports:
       - "3306:3306"
-    command: --sql_mode=""
     volumes:
-      - ./comunidadlegal_stg.sql:/docker-entrypoint-initdb.d/comunidadlegal_stg.sql
-      - ./data:/var/lib/mysql
+      - /home/fgarcia/repositories/docker-alpine/comunidadlegal_stg.sql:/docker-entrypoint-initdb.d/comunidadlegal_stg.sql
+      - /home/fgarcia/repositories/docker-alpine/data:/var/lib/mysql
     networks:
       - backend
     environment:
