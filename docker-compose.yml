@@ -8,7 +8,7 @@ services:
     networks:
       - backend
     volumes:
-      - ${PROJECT_ROOT}:/var/www/html
+      - ${PROJECT_PATH}:/var/www/html
     container_name: php_app
   apache:
     build:
@@ -21,20 +21,21 @@ services:
       - frontend
       - backend
     ports:
-      - "80:80"
+      - ${PUERTO_WEB}
     volumes:
-      - /home/fgarcia/repositories/docker-alpine/app:/var/www/html
+      - ${PROJECT_PATH}:/var/www/html
     container_name: apache_app
     environment:
-      - PROJECT_PATH_VH=${PROJECT_PATH}
+      - PROJECT_SERVER_NAME=${PROJECT_SERVER_NAME}
+      - PROJECT_SERVER_ALIAS=${PROJECT_SERVER_ALIAS}
+      - PROJECT_NAME=${PROJECT_NAME}
   mysql:
     image: mysql:${MYSQL_VERSION:-latest}
     restart: always
     ports:
-      - "3306:3306"
+      - ${PUERTO_DB}
     volumes:
-      - /home/fgarcia/repositories/docker-alpine/comunidadlegal_stg.sql:/docker-entrypoint-initdb.d/comunidadlegal_stg.sql
-      - /home/fgarcia/repositories/docker-alpine/data:/var/lib/mysql
+      - ./data:/var/lib/mysql
     networks:
       - backend
     environment:
