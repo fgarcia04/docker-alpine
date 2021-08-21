@@ -1,3 +1,5 @@
+<p align="center"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Bb3IWflG--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/016f1249r1njnhhciz9n.png"></p>
+
 
 # Docker LAMP / Docker
 ## Docker LAMP with PHP / APACHE / MYSQL
