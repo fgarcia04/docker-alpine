@@ -5,6 +5,11 @@ RUN apk update; \
     apk upgrade;
 
 RUN apk add --no-cache \
+    freetype-dev \
+    libjpeg-turbo-dev \
+    libjpeg-turbo \
+    libpng-dev \
+    jpeg-dev \
     php \
     php7-ctype \
     php7-fileinfo \
@@ -18,9 +23,13 @@ RUN apk add --no-cache \
     npm \
     git
 
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+
 RUN docker-php-ext-install \
+    exif \
     bcmath \
-    pdo_mysql
+    pdo_mysql \
+    gd
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
