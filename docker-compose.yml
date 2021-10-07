@@ -45,6 +45,22 @@ services:
       MYSQL_USER: "${DB_USERNAME}"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
     container_name: mysql_app
+  mailhog:
+    image: mailhog/mailhog
+    environment:
+      MAIL_MAILER: smtp
+      MAIL_HOST: 127.0.0.1
+      MAIL_PORT: 1025
+      MAIL_USERNAME: null
+      MAIL_PASSWORD: null
+      MAIL_ENCRYPTION: null
+    ports: 
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - backend
+      - frontend
+    container_name: mailhog_app
 networks:
   frontend:
   backend:
